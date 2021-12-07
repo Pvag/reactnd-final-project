@@ -9,6 +9,7 @@ import NewQuestion from './NewQuestion';
 import Question from './Question';
 import Login from './Login';
 import LeaderBoard from './LeaderBoard';
+import '../style/App.css';
 
 export class App extends Component {
   componentDidMount() {
@@ -23,11 +24,11 @@ export class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className="container">
-            <Nav />
+            {this.props.authedUser === null ? null : <Nav />}
             {this.props.loading
               ? null
               : <div>
-                  <Route path="/" exact component={Home} />
+                  <Route path="/" exact component={this.props.authedUser ? Home : Login} />
                   <Route path="/new" component={NewQuestion} />
                   <Route path="/question/:id" component={Question} />
                   <Route path="/leaderboard" component={LeaderBoard} />
@@ -41,9 +42,10 @@ export class App extends Component {
   }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ authedUser, users }) {
   return {
     loading: Object.keys(users).length === 0,
+    authedUser,
   }
 }
 

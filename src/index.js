@@ -10,7 +10,7 @@ import { setAuthedUser } from './actions/authedUser';
 
 const store = createStore(rootReducer, middleware);
 
-store.dispatch(setAuthedUser('sarahedo'));
+// store.dispatch(setAuthedUser('sarahedo'));
 
 ReactDOM.render(
   <Provider store={store}>

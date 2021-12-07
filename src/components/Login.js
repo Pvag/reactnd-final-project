@@ -1,17 +1,36 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { setAuthedUser } from '../actions/authedUser';
 
-export default class Login extends Component {
+export class Login extends Component {
+  loginWithUser = (id) => {
+    this.props.dispatch(setAuthedUser(id));
+  }
+
   render() {
     return(
-      <h3>Login!</h3>
+      <div id="login">
+        <h2 className="center">Please, login first</h2>
+        <ul id="login-list">
+          {this.props.usersId.map(userId => {
+            return(
+              <li key={userId} onClick={() => this.loginWithUser(userId)}>
+                <img src={this.props.users[userId].avatarURL} />
+                <span>{userId}</span>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     );
   }
 }
 
-// function mapStateToProps({  }) {
-//   return {
-//   }
-// }
+function mapStateToProps({ users }) {
+  return {
+    users,
+    usersId: Object.keys(users),
+  }
+}
 
-// export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Login);

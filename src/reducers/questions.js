@@ -5,8 +5,6 @@ export default function questions (state = {}, action) {
     case ADD_QUESTION :
       return '';
     case RECEIVE_QUESTIONS :
-      console.log("hey hooo");
-      console.log(action);
       return {
         ...state,
         ...action.questions
