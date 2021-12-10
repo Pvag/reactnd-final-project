@@ -10,6 +10,7 @@ export class Login extends Component {
   render() {
     return(
       <div id="login">
+        <h1 className="welcome">Welcome to the <em>would you rather</em> game!</h1>
         <h2 className="center">Please, login first</h2>
         <ul id="login-list">
           {this.props.usersId.map(userId => {
