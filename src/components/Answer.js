@@ -1,4 +1,4 @@
-import { FIRST_ANSWER, SECOND_ANSWER } from './Question';
+import { OPTION_ONE, OPTION_TWO } from './Question';
 
 export default function Answer (props) {
   const { question, author, answer } = props;
@@ -10,10 +10,10 @@ export default function Answer (props) {
         <img src={avatarURL} alt="author's avatar"></img>
         <div className="question-brief-questions">
           <span>Would you rather</span>
-          <p>{answer === FIRST_ANSWER ? '(your answer) ' : ''}
+          <p>{answer === OPTION_ONE ? '(your answer) ' : ''}
             {question.optionOne.text}</p>
           <p>OR</p>
-          <p>{answer === SECOND_ANSWER ? '(your answer) ' : ''}
+          <p>{answer === OPTION_TWO ? '(your answer) ' : ''}
             {question.optionTwo.text}</p>
           <p>?</p>
         </div>

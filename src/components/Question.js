@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Answer from './Answer';
 import Poll from './Poll';
 
-export const FIRST_ANSWER = 'a';
-export const SECOND_ANSWER = 'b';
+export const OPTION_ONE = 'optionOne';
+export const OPTION_TWO = 'optionTwo';
 
 class Question extends Component {
   constructor (props) {
@@ -16,21 +16,21 @@ class Question extends Component {
 
   alreadyAnswered = (question, authedUser) => {
     if (question.optionOne.votes.includes(authedUser)) {
-      this.answer = FIRST_ANSWER;
+      this.answer = OPTION_ONE;
     }
     else if (question.optionTwo.votes.includes(authedUser)) {
-      this.answer = SECOND_ANSWER;
+      this.answer = OPTION_TWO;
     }
     return this.answer !== '' ;
   }
 
   render() {
-    const { question, author } = this.props;
+    const { question, author, id } = this.props;
     return(
       <div>
-        {this.ans
+        {this.ans // TODO store this inside the redux's store ;)
           ? <Answer question={question} author={author} answer={this.answer} />
-          : <Poll question={question} author={author} />}
+          : <Poll questionId={id} />}
       </div>
     );
   }
@@ -43,6 +43,7 @@ function mapStateToProps({ questions, users, authedUser }, props) {
     question: questions[id],
     author,
     authedUser,
+    id,
   }
 }
 export default connect(mapStateToProps)(Question);

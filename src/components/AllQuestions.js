@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import QuestionBrief from "./QuestionBrief";
+import Answer from "./Answer";
 
 const UNANSWERED = 'UNANSWERED';
 const ANSWERED = 'ANSWERED';
@@ -26,13 +27,31 @@ function splitQuestions (questions, authedUser) {
   return splittedQuestions;
 }
 
-function List (props) {
+function ListUnanswered (props) {
   return(
     <ul>
       {props.questionsId.map(questionId => {
         return(
           // TODO add Link here
           <li key={questionId}><QuestionBrief questionId={questionId} /></li>
+        )
+      })}
+    </ul>
+  )
+}
+
+function ListAnswered (props) {
+  const { questions, users, questionsId } = props;
+  return(
+    <ul>
+      {questionsId.map(questionId => {
+        const question = questions[questionId];
+        const author = users[question.author];
+        const answer = author.answers[questionId];
+        return(
+          // TODO add Link here
+          <li key={questionId}><Answer question={question}
+            author={author} answer={answer} /></li>
         )
       })}
     </ul>
@@ -66,6 +85,7 @@ class AllQuestions extends Component {
   render() {
     const questionsToShow = this.splittedQuestions[this.state.showQuestionsOfType];
     const sortedQuestions = this.sortMostRecentFirst(questionsToShow);
+    const { questions, users } = this.props;
     return(
       <div>
         <form>
@@ -80,17 +100,20 @@ class AllQuestions extends Component {
           </label><br/>
         </form>
         <div>
-          <List questionsId={sortedQuestions} />
+          {this.state.showQuestionsOfType === UNANSWERED
+            ? <ListUnanswered questionsId={sortedQuestions} />
+            : <ListAnswered questionsId={sortedQuestions} questions={questions} users={users} />}
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps ({ questions, authedUser }) {
+function mapStateToProps ({ questions, authedUser, users }) {
   return {
     questions,
     authedUser,
+    users,
   }
 }
 

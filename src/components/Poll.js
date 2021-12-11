@@ -1,15 +1,29 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import { saveAnswer } from "../actions/questions";
+import { saveUserAnswer } from '../actions/users';
 
-import { FIRST_ANSWER, SECOND_ANSWER } from "./Question";
+import { OPTION_ONE, OPTION_TWO } from "./Question";
 
-const optionStyle = {
-  border: '1px solid black',
+const centerStyle = {
   textAlign: 'center',
-  cursor: 'pointer',
 }
 
 class Poll extends Component {
+  storeAnswer = (authedUser, qid, option) => {
+    this.props.dispatch(saveAnswer({
+      authedUser,
+      qid,
+      answer: option,
+    }));
+    this.props.dispatch(saveUserAnswer({
+      uid: authedUser,
+      qid,
+      option,
+    }))
+    // TODO show answers for the answered question !
+  }
+
   render () {
     const { question, author } = this.props;
     const { name, avatarURL } = author; 
@@ -20,10 +34,20 @@ class Poll extends Component {
           <img src={avatarURL} alt="author's avatar"></img>
           <div className="question-brief-questions">
             <span>Would you rather</span>
-            <p style={optionStyle}>{question.optionOne.text}</p>
-            <p>OR</p>
-            <p style={optionStyle}>{question.optionTwo.text}</p>
-            <p>?</p>
+            <p className="option-style" onClick={
+              () => this.storeAnswer(
+                this.props.authedUser,
+                question.id,
+                OPTION_ONE)
+              }>{question.optionOne.text}</p>
+            <p style={centerStyle}>OR</p>
+            <p className="option-style" onClick={
+              () => this.storeAnswer(
+                this.props.authedUser,
+                question.id,
+                OPTION_TWO)
+            }>{question.optionTwo.text}</p>
+            <p style={centerStyle}>?</p>
           </div>
         </div>
       </div>
@@ -31,10 +55,10 @@ class Poll extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }, { question, author }) {
+function mapStateToProps({ questions, users, authedUser }, { questionId }) {
   return {
-    question,
-    author,
+    question: questions[questionId],
+    author: users[questions[questionId].author],
     authedUser,
   }
 }

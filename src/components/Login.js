@@ -8,7 +8,6 @@ export class Login extends Component {
   }
 
   render() {
-    console.log(' QUESTION ID FROM LOGIN: ', this.props.questionId);
     return(
       <div id="login">
         <h1 className="welcome">Welcome to the <em>would you rather</em> game!</h1>

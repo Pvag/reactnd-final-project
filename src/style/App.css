@@ -168,7 +168,7 @@ li {
   margin: 2vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -193,3 +193,13 @@ li {
 /* .question-brief-whole {
  
 } */
+
+.option-style {
+  border: 1px solid black;
+  text-align: center;
+  cursor: pointer;
+}
+
+.option-style:hover {
+  background-color: rgba(211, 211, 211, 0.637);
+}
