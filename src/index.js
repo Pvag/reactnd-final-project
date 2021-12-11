@@ -6,7 +6,6 @@ import { createStore } from 'redux';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
 import middleware from './middlewares';
-import { setAuthedUser } from './actions/authedUser';
 
 const store = createStore(rootReducer, middleware);
 

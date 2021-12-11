@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default class NewQuestion extends Component {
+class NewQuestion extends Component {
   render() {
     return(
       <h3>New Question!</h3>
@@ -9,9 +9,10 @@ export default class NewQuestion extends Component {
   }
 }
 
-// function mapStateToProps({  }) {
-//   return {
-//   }
-// }
+function mapStateToProps({ users, authedUser }) {
+  return {
+    thisUser: users[authedUser],
+  }
+}
 
-// export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(NewQuestion);

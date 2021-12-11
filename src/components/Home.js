@@ -1,14 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import QuestionBrief from './QuestionBrief';
 import AllQuestions from './AllQuestions';
-
-
-
-// function SeparateUnansweredFromAnswered (props) {
-//   const { questions, 
-//   const unansweredQuestionsId = props.questionsId.filter(id)
-// }
 
 export class Home extends Component {
   render() {
@@ -16,7 +8,6 @@ export class Home extends Component {
       <div>
         <h3>Buh!</h3>
         <h4>Welcome, {this.props.authedUser} !</h4>
-        {/* <List questionsId={this.props.questionsId} /> */}
         <AllQuestions />
       </div>
     );

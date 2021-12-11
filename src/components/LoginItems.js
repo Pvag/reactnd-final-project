@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { logout } from '../actions/authedUser';
+import { NavLink } from 'react-router-dom';
 
 class LoginItems extends Component {
   logoutUser = () => {
@@ -10,10 +11,14 @@ class LoginItems extends Component {
   render() {
     return (
       <div className="login-items">
-        <img src={this.props.avatarURL}></img>
+        <img src={this.props.avatarURL} alt="user's avatar"></img>
         <span className="name">{this.props.name}</span>
         <span className="vert-sep">|</span>
-        <span className="logout" onClick={() => this.logoutUser()}>logout</span>
+        <span className="logout" onClick={() => this.logoutUser()}>
+          <NavLink to="/" exact activeClassName="active">
+            Logout
+          </NavLink>
+        </span>
       </div>
     )
   }

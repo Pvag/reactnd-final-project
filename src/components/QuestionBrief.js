@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-
+// TODO remove unused state
 export class QuestionBrief extends Component {
   render() {
     const name = this.props.author.name;
@@ -10,7 +10,7 @@ export class QuestionBrief extends Component {
       <div className="question-brief-whole">
         <h3>{name} asks:</h3>
         <div className="question-brief">
-          <img src={avatarURL}></img>
+          <img src={avatarURL} alt="logged user's avatar"></img>
           <div className="question-brief-questions">
             <span>Would you rather</span>
             <p>{options.optionOne.text}</p>

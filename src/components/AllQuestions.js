@@ -50,9 +50,6 @@ class AllQuestions extends Component {
     this.splittedQuestions = splitQuestions(this.props.questions, this.props.authedUser);
   }
 
-  componentDidMount () {
-  }
-
   setQuestionType = (e) => {
     this.setState(() => {
       return {
@@ -61,8 +58,14 @@ class AllQuestions extends Component {
     });
   }
 
+  sortMostRecentFirst = (selectedQuestions) => {
+    const { questions } = this.props;
+    return selectedQuestions.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+  }
+
   render() {
     const questionsToShow = this.splittedQuestions[this.state.showQuestionsOfType];
+    const sortedQuestions = this.sortMostRecentFirst(questionsToShow);
     return(
       <div>
         <form>
@@ -77,7 +80,7 @@ class AllQuestions extends Component {
           </label><br/>
         </form>
         <div>
-          <List questionsId={questionsToShow} />
+          <List questionsId={sortedQuestions} />
         </div>
       </div>
     );
