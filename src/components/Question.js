@@ -1,35 +1,48 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import Answer from './Answer';
+import Poll from './Poll';
+
+export const FIRST_ANSWER = 'a';
+export const SECOND_ANSWER = 'b';
 
 class Question extends Component {
+  constructor (props) {
+    super(props);
+    this.answer = '';
+    const { question, authedUser } = this.props;
+    this.ans = this.alreadyAnswered(question, authedUser)
+  }
+
+  alreadyAnswered = (question, authedUser) => {
+    if (question.optionOne.votes.includes(authedUser)) {
+      this.answer = FIRST_ANSWER;
+    }
+    else if (question.optionTwo.votes.includes(authedUser)) {
+      this.answer = SECOND_ANSWER;
+    }
+    return this.answer !== '' ;
+  }
+
   render() {
     const { question, author } = this.props;
-    const name = author.name;
-    const avatarURL = author.avatarURL;
     return(
-      <div className="question-brief-whole">
-        <h3>{name} asks:</h3>
-        <div className="question-brief">
-          <img src={avatarURL} alt="author's avatar"></img>
-          <div className="question-brief-questions">
-            <span>Would you rather</span>
-            <p>{question.optionOne.text}</p>
-            <p>OR</p>
-            <p>{question.optionTwo.text}</p>
-            <p>?</p>
-          </div>
-        </div>
+      <div>
+        {this.ans
+          ? <Answer question={question} author={author} answer={this.answer} />
+          : <Poll question={question} author={author} />}
       </div>
     );
   }
 }
 
-function mapStateToProps({ questions, users }, props) {
+function mapStateToProps({ questions, users, authedUser }, props) {
   const { id } = props.match.params;
   const author = users[questions[id].author];
   return {
     question: questions[id],
-    author
+    author,
+    authedUser,
   }
 }
 export default connect(mapStateToProps)(Question);

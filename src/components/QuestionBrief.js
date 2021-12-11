@@ -1,11 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 // TODO remove unused state
 export class QuestionBrief extends Component {
   render() {
-    const name = this.props.author.name;
-    const options = this.props.questions[this.props.questionId];
-    const avatarURL = this.props.author.avatarURL;
+    const { question, author } = this.props;
+    const name = author.name;
+    const avatarURL = author.avatarURL;
     return(
       <div className="question-brief-whole">
         <h3>{name} asks:</h3>
@@ -13,22 +14,23 @@ export class QuestionBrief extends Component {
           <img src={avatarURL} alt="logged user's avatar"></img>
           <div className="question-brief-questions">
             <span>Would you rather</span>
-            <p>{options.optionOne.text}</p>
+            <p>{question.optionOne.text}</p>
             <p>OR</p>
-            <p>{options.optionTwo.text}</p>
+            <p>{question.optionTwo.text}</p>
             <p>?</p>
           </div>
         </div>
+        <NavLink to={'/question/' + question.id}>
+          <span className="goto-poll">Go to Poll</span>
+        </NavLink>
       </div>
     );
   }
 }
 
-function mapStateToProps({ questions, authedId, users }, {questionId}) {
+function mapStateToProps({ questions, users }, {questionId}) {
   return {
-    questions,
-    questionId,
-    authedId,
+    question: questions[questionId],
     author: users[questions[questionId].author],
   }
 }
