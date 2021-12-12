@@ -10,8 +10,6 @@ class Question extends Component {
   constructor (props) {
     super(props);
     this.answer = '';
-    const { question, authedUser } = this.props;
-    this.ans = this.alreadyAnswered(question, authedUser)
   }
 
   alreadyAnswered = (question, authedUser) => {
@@ -25,10 +23,10 @@ class Question extends Component {
   }
 
   render() {
-    const { question, author, id } = this.props;
+    const { question, author, id, authedUser } = this.props;
     return(
       <div>
-        {this.ans // TODO store this inside the redux's store ;)
+        {this.alreadyAnswered(question, authedUser)
           ? <Answer question={question} author={author} answer={this.answer} />
           : <Poll questionId={id} />}
       </div>

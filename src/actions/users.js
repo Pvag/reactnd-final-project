@@ -1,5 +1,6 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const SAVE_USER_ANSWER = 'SAVE_USER_ANSWER';
+export const SAVE_USER_QUESTION = 'SAVE_USER_QUESTION'
 
 export function receiveUsers (users) {
   return {
@@ -12,5 +13,12 @@ export function saveUserAnswer (ans) {
   return {
     type: SAVE_USER_ANSWER,
     ans,
+  }
+}
+
+export function saveUserQuestion (question) {
+  return {
+    type: SAVE_USER_QUESTION,
+    question,
   }
 }

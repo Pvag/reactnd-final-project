@@ -1,15 +1,18 @@
-import { ADD_QUESTION, RECEIVE_QUESTIONS, SET_ANSWER } from "../actions/questions";
+import { ADD_QUESTION, RECEIVE_QUESTIONS, SAVE_QUESTION_ANSWER } from "../actions/questions";
 
 export default function questions (state = {}, action) {
   switch (action.type) {
     case ADD_QUESTION :
-      return '';
+      return {
+        ...state,
+        [action.data.id]: action.data,
+      }
     case RECEIVE_QUESTIONS :
       return {
         ...state,
-        ...action.questions
+        ...action.questions,
       };
-    case SET_ANSWER : // TODO ALSO SET DATA IN USER ! ADD THE OPTION AND QUESTIONID
+    case SAVE_QUESTION_ANSWER :
       const { authedUser, qid, answer } = action.ans;
       return {
         ...state,

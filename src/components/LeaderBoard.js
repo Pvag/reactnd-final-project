@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import LeaderBoardUser from './LeaderBoardUser';
 
 function totalScore (user) {
-  return user.questions.length + Object.keys(user.answers).length;
+  return Object.keys(user.questions).length + Object.keys(user.answers).length;
 }
 
 function usersScoreChartId (users) {

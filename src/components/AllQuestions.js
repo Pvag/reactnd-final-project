@@ -32,7 +32,6 @@ function ListUnanswered (props) {
     <ul>
       {props.questionsId.map(questionId => {
         return(
-          // TODO add Link here
           <li key={questionId}><QuestionBrief questionId={questionId} /></li>
         )
       })}
@@ -49,7 +48,6 @@ function ListAnswered (props) {
         const author = users[question.author];
         const answer = author.answers[questionId];
         return(
-          // TODO add Link here
           <li key={questionId}><Answer question={question}
             author={author} answer={answer} /></li>
         )

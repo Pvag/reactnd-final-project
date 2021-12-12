@@ -1,8 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { saveAnswer } from "../actions/questions";
+import { handleSaveAnswer } from "../actions/questions";
 import { saveUserAnswer } from '../actions/users';
-
 import { OPTION_ONE, OPTION_TWO } from "./Question";
 
 const centerStyle = {
@@ -11,7 +10,7 @@ const centerStyle = {
 
 class Poll extends Component {
   storeAnswer = (authedUser, qid, option) => {
-    this.props.dispatch(saveAnswer({
+    this.props.dispatch(handleSaveAnswer({
       authedUser,
       qid,
       answer: option,
@@ -21,7 +20,6 @@ class Poll extends Component {
       qid,
       option,
     }))
-    // TODO show answers for the answered question !
   }
 
   render () {

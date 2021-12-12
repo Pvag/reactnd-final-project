@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// TODO remove unused state
+
 export class QuestionBrief extends Component {
   render() {
     const { question, author } = this.props;

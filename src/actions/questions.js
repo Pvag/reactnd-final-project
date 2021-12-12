@@ -1,8 +1,9 @@
 import { _saveQuestionAnswer } from "../utils/_DATA";
+import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-export const SET_ANSWER = 'SET_ANSWER';
+export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
 
 export function receiveQuestions (questions) {
   return {
@@ -11,16 +12,31 @@ export function receiveQuestions (questions) {
   }
 }
 
-function doit(ans) {
+function saveAnswerAction(ans) {
   return {
-    type: SET_ANSWER,
+    type: SAVE_QUESTION_ANSWER,
     ans
   }
 }
 
-export function saveAnswer (ans) {
+export function handleSaveAnswer (ans) {
   return (dispatch) => {
+    dispatch(showLoading());
     _saveQuestionAnswer(ans)
-      .then(() => (dispatch(doit(ans))));
+      .then(() => {
+        dispatch(saveAnswerAction(ans));
+        dispatch(hideLoading());
+      });
   }
+}
+
+export function addQuestionAction(data) {
+  return {
+    type: ADD_QUESTION,
+    data,
+  }
+}
+
+export function handleAddQuestion (data) {
+  console.log(' *** DATA: ', data);
 }

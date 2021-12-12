@@ -5,7 +5,7 @@ import LoadingBar from 'react-redux-loading';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Header from './Header';
-import NewQuestion from './NewQuestion';
+import NewPoll from './NewPoll';
 import Question from './Question';
 import Login from './Login';
 import LeaderBoard from './LeaderBoard';
@@ -15,8 +15,6 @@ import '../style/App.css';
 export class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData());
-
-    console.log("wasssupp?");
   }
 
   render() {
@@ -31,11 +29,10 @@ export class App extends Component {
               : <div>
                 <Switch>
                   <Route path="/" exact component={this.props.authedUser ? Home : Login} />
-                  <Route path="/new" component={this.props.authedUser ? NewQuestion : Login} />
+                  <Route path="/add" component={this.props.authedUser ? NewPoll : Login} />
                   <Route path="/question/:id" component={this.props.authedUser ? Question : Login} />
                   <Route path="/leaderboard" component={this.props.authedUser ? LeaderBoard : Login} />
                   <Route path="*" component={NotFound} />
-                  {/* <Route path="/login" component={Login} /> */}
                 </Switch>
                 </div>
             }
