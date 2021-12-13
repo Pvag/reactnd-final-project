@@ -105,4 +105,4 @@ This code talks to the database via 4 methods:
 
 ## Contributing
 
-Pull requests will be accepted starting from the end of December 2021, which is after my final graduation for the course, respecting code of conduct required by the graduation process.
+Pull requests will be accepted starting from the end of December 2021, which is after my final graduation for the course, respecting code of conduct required by the graduation process (honor code, by Udacity).
