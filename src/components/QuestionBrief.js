@@ -18,11 +18,11 @@ export class QuestionBrief extends Component {
             <p>OR</p>
             <p>{question.optionTwo.text}</p>
             <p>?</p>
+            <NavLink to={'/question/' + question.id} className="goto-poll">
+              <span>Go to Poll</span>
+            </NavLink>
           </div>
         </div>
-        <NavLink to={'/question/' + question.id}>
-          <span className="goto-poll">Go to Poll</span>
-        </NavLink>
       </div>
     );
   }

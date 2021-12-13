@@ -9,10 +9,13 @@ class LeaderBoardUser extends Component {
   render () {
     const user = this.props.users[this.props.id];
     return(
-      <div>
+      <div className="leader-board-user">
         <img src={user.avatarURL} alt="user avatar" />
-        <p>{user.name} has asked {user.questions.length} questions and answered {Object.keys(user.answers).length} questions.</p>
-        <p>Score: {totalScore(user)}</p>
+        <div className="leader-board-stats">
+          <p className="leader-board-stats-name">{user.name}</p>
+          <p> has asked {user.questions.length} questions and answered {Object.keys(user.answers).length} questions.</p>
+          <p className="leader-board-stats-score">Score: {totalScore(user)}</p>
+        </div>
       </div>
     )
   }

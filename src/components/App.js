@@ -32,7 +32,8 @@ export class App extends Component {
                   <Route path="/add" component={this.props.authedUser ? NewPoll : Login} />
                   <Route path="/question/:id" component={this.props.authedUser ? Question : Login} />
                   <Route path="/leaderboard" component={this.props.authedUser ? LeaderBoard : Login} />
-                  <Route path="*" component={NotFound} />
+                  {/* <Route path="*" component={NotFound} /> */}
+                  <Route path="*" children={ <NotFound authedUser={this.props.authedUser} />} />
                 </Switch>
                 </div>
             }

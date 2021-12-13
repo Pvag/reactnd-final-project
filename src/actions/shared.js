@@ -25,7 +25,7 @@ export function handleNewQuestion (data) {
       .then(formattedQuestion => {
         dispatch(addQuestionAction(formattedQuestion));
         dispatch(saveUserQuestion(formattedQuestion));
-        dispatch(hideLoading());
-      });
+      })
+      .then(() => dispatch(hideLoading()));
   }
 }

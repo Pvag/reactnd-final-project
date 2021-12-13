@@ -15,7 +15,7 @@ class LoginItems extends Component {
         <span className="name">{this.props.name}</span>
         <span className="vert-sep">|</span>
         <span className="logout" onClick={() => this.logoutUser()}>
-          <NavLink to="/" exact activeClassName="active">
+          <NavLink to="/" exact activeClassName="" className="logout-menu">
             Logout
           </NavLink>
         </span>

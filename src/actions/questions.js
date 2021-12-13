@@ -36,7 +36,3 @@ export function addQuestionAction(data) {
     data,
   }
 }
-
-export function handleAddQuestion (data) {
-  console.log(' *** DATA: ', data);
-}

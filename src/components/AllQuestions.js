@@ -63,8 +63,13 @@ class AllQuestions extends Component {
     this.state = {
       showQuestionsOfType: UNANSWERED,
     }  
+  }
 
-    this.splittedQuestions = splitQuestions(this.props.questions, this.props.authedUser);
+  showQuestions = (questions, authedUser) => {
+    const splittedQuestions = splitQuestions(questions, authedUser);
+    const questionsToShow = splittedQuestions[this.state.showQuestionsOfType];
+    const sortedQuestions = this.sortMostRecentFirst(questionsToShow);
+    return sortedQuestions;
   }
 
   setQuestionType = (e) => {
@@ -81,20 +86,19 @@ class AllQuestions extends Component {
   }
 
   render() {
-    const questionsToShow = this.splittedQuestions[this.state.showQuestionsOfType];
-    const sortedQuestions = this.sortMostRecentFirst(questionsToShow);
-    const { questions, users } = this.props;
+    const { questions, users, authedUser } = this.props;
+    const sortedQuestions = this.showQuestions(questions, authedUser);
     return(
       <div>
-        <form>
-          <legend>Choose the category of the questions to show</legend>
+        <form className="question-category-forum">
+          <legend>Choose the category of the questions to show:</legend>
           <label htmlFor={UNANSWERED}>
             <input type="radio" name={UNANSWERED} value={UNANSWERED}
-              onChange={this.setQuestionType} checked={this.state.showQuestionsOfType === UNANSWERED} />Unanswered
+              onChange={this.setQuestionType} checked={this.state.showQuestionsOfType === UNANSWERED} /> Unanswered
           </label><br/>
           <label htmlFor={ANSWERED}>
             <input type="radio" name={ANSWERED} value={ANSWERED}
-              onChange={this.setQuestionType} checked={this.state.showQuestionsOfType === ANSWERED} />Answered
+              onChange={this.setQuestionType} checked={this.state.showQuestionsOfType === ANSWERED} /> Answered
           </label><br/>
         </form>
         <div>

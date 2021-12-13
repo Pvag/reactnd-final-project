@@ -43,12 +43,18 @@ class NewPoll extends Component {
   formStyle = {
     display: 'flex',
     flexDirection: 'column',
-    justifyItems: 'center',
+    justifyItems: 'flex-end',
     alignItems: 'center',
   }
 
   buttonStyle = {
     width: '30%',
+  }
+
+  validInput = () => {
+    const l1 = this.state[OPTION_ONE_TEXT].length;
+    const l2 = this.state[OPTION_TWO_TEXT].length;
+    return l1 !== 0 && l2 !== 0;
   }
 
   render() {
@@ -68,7 +74,8 @@ class NewPoll extends Component {
             <input id={OPTION_TWO_TEXT}
               placeholder="the second option" onChange={(e) => this.inputChanged(e)}/> option two
           </label>
-          <button style={this.buttonStyle} onClick={this.addNewQuestion}>Add Question</button>
+          <button style={this.buttonStyle} onClick={this.addNewQuestion}
+            disabled={!this.validInput()}>Add Question</button>
         </form>
       </div>
     );

@@ -15,15 +15,13 @@ function usersScoreChartId (users) {
 class LeaderBoard extends Component {
   render() {
     return(
-      <div>
+      <div className="leader-board">
         <h3>Leader Board</h3>
-        <div className="lader-board">
-          <ul>
-            {usersScoreChartId(this.props.users).map(id => (
-              <li key={id}><LeaderBoardUser id={id} /></li>
-            ))}
-          </ul>
-        </div>
+        <ul className="leader-board-list">
+          {usersScoreChartId(this.props.users).map(id => (
+            <li key={id}><LeaderBoardUser id={id} /></li>
+          ))}
+        </ul>
       </div>
     );
   }

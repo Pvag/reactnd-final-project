@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import Answer from './Answer';
 import Poll from './Poll';
 
@@ -24,6 +25,10 @@ class Question extends Component {
 
   render() {
     const { question, author, id, authedUser } = this.props;
+    if (question === null) {
+      return <Redirect to="/notfound" />
+    }
+
     return(
       <div>
         {this.alreadyAnswered(question, authedUser)
@@ -36,9 +41,10 @@ class Question extends Component {
 
 function mapStateToProps({ questions, users, authedUser }, props) {
   const { id } = props.match.params;
-  const author = users[questions[id].author];
+  const question = questions[id] ? questions[id] : null;
+  const author = question ? users[question.author] : null;
   return {
-    question: questions[id],
+    question: question,
     author,
     authedUser,
     id,
