@@ -1,10 +1,18 @@
 # Would You Rather Project
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+This is the code created for the "React Nanodegree" course on Udacity.
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+The project was created using create-react-app.
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+## Installation
+
+yarn install
+
+## Execution
+
+yarn start
+
+The project will be served at the address provided at the shell.
 
 ## Data
 
@@ -46,7 +54,7 @@ Voting options are attached to questions. They include:
 | votes             | Array | A list that contains the id of each user who voted for that option|
 | text                | String | The text of the option |
 
-Your code will talk to the database via 4 methods:
+This code talks to the database via 4 methods:
 
 * `_getUsers()`
 * `_getQuestions()`
@@ -97,4 +105,4 @@ Your code will talk to the database via 4 methods:
 
 ## Contributing
 
-This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
+Pull requests will be accepted starting from the end of December 2021, which is after my final graduation for the course, respecting code of conduct required by the graduation process.
