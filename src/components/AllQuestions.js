@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import QuestionBrief from "./QuestionBrief";
-import Answer from "./Answer";
 
 const UNANSWERED = 'UNANSWERED';
 const ANSWERED = 'ANSWERED';
@@ -27,29 +26,12 @@ function splitQuestions (questions, authedUser) {
   return splittedQuestions;
 }
 
-function ListUnanswered (props) {
+function List (props) {
   return(
     <ul>
       {props.questionsId.map(questionId => {
         return(
           <li key={questionId}><QuestionBrief questionId={questionId} /></li>
-        )
-      })}
-    </ul>
-  )
-}
-
-function ListAnswered (props) {
-  const { questions, users, questionsId } = props;
-  return(
-    <ul>
-      {questionsId.map(questionId => {
-        const question = questions[questionId];
-        const author = users[question.author];
-        const answer = author.answers[questionId];
-        return(
-          <li key={questionId}><Answer question={question}
-            author={author} answer={answer} /></li>
         )
       })}
     </ul>
@@ -86,7 +68,7 @@ class AllQuestions extends Component {
   }
 
   render() {
-    const { questions, users, authedUser } = this.props;
+    const { questions, authedUser } = this.props;
     const sortedQuestions = this.showQuestions(questions, authedUser);
     return(
       <div>
@@ -102,9 +84,7 @@ class AllQuestions extends Component {
           </label><br/>
         </form>
         <div>
-          {this.state.showQuestionsOfType === UNANSWERED
-            ? <ListUnanswered questionsId={sortedQuestions} />
-            : <ListAnswered questionsId={sortedQuestions} questions={questions} users={users} />}
+          <List questionsId={sortedQuestions} />
         </div>
       </div>
     );

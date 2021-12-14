@@ -14,6 +14,10 @@ yarn start
 
 The project will be served at the address provided at the shell.
 
+## Node version
+
+Version 15.14.0 was used during the development and testing of the project.
+
 ## Data
 
 There are two types of objects stored in our database:
